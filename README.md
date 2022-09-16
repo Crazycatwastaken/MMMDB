@@ -32,7 +32,23 @@ To create a production version of your app:
 ```bash
 npm run build
 ```
-
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## API Key
+
+To be able to search from MMMDB you'll to generate a key from TMDB
+
+> Geneate an API [Key](https://developers.themoviedb.org/3) 
+
+Then create a key.js file under:
+```
+└── src
+    └── stores
+        └── key.js
+```
+```bash
+export const key = "Your_Key";
+```
+
