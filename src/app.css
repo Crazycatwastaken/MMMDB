@@ -1,0 +1,8 @@
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+    @layer components {
+        .search {
+            @apply flex items-center w-72 text-left space-x-3 px-4 h-12 rounded-lg;
+        }
+    }
