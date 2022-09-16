@@ -10,7 +10,15 @@
 </nav>
 
 <svelte:head>
-  <title>MMMDB </title>
+  <title>MMMDB</title>
 </svelte:head>
+
+<style>
+	:global(body) {
+		background-color: #36393f;
+		color: #fff;
+	}
+</style>
+
 
 <slot />
