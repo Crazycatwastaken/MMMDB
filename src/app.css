@@ -6,6 +6,6 @@
             @apply text-accent font-bold underline underline-offset-8 decoration-4;
         }
         .inactive {
-            @apply hover:text-accent duration-300 hover:animate-pulse
+            @apply hover:text-accent duration-1000 hover:animate-pulse
         }
     }
