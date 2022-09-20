@@ -2,7 +2,10 @@
     @tailwind components;
     @tailwind utilities;
     @layer components {
-        .search {
-            @apply flex items-center w-72 text-left space-x-3 px-4 h-12 rounded-lg;
+        .is-active {
+            @apply text-accent font-bold underline underline-offset-8 decoration-4;
+        }
+        .inactive {
+            @apply hover:text-accent duration-300 hover:animate-pulse
         }
     }
