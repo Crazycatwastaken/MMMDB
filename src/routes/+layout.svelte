@@ -3,33 +3,49 @@
 	import { page } from '$app/stores';
 	import { clickOutside } from '../js/clickout.js';
 	import { tweened } from 'svelte/motion';
-	import { cubicOut } from 'svelte/easing';
+	import { cubicInOut } from 'svelte/easing';
 	import { MagnifyingGlassSolid, CircleUserRegular } from 'svelte-awesome-icons';
 	export let searchquery = '';
 
 	$: currentRoute = $page.url.pathname;
 	let loggedin = false;
 	let searchActive = false;
-
+	
 	const progress = tweened(0, {
 		duration: 400,
-		easing: cubicOut
+		easing: cubicInOut
+	});
+
+	const progress2 = tweened(2, {
+		duration: 400,
+		easing: cubicInOut
 	});
 
 	function searchActived() {
-		searchActive = !searchActive;
-		progress.set(24);
+		progress2.set(0);
+		setTimeout(() => {
+			searchActive = true;
+			progress.set(24);
+		}, 400);
+		
 	}
 
 	// @ts-ignore
 	function handleClickOutside(event) {
 		progress.set(0);
+		
 		console.log($progress);
 		console.log(searchActive);
 		setTimeout(() => {
 			searchActive = false;
+			progress2.set(2);
 		}, 400);
 	}
+
+	
+
+
+
 </script>
 
 <nav>
@@ -79,7 +95,7 @@
 								<div class="relative rounded overflow-hidden flex justify-center">
 									<form action="/search">
 										<input
-											class="rounded-xl h-10 overflow-hidden  shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 transition ease-in-out delay-150 hover:bg-slate-700 duration-300 "
+											class="rounded-xl h-16  overflow-hidden  shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 transition ease-in-out delay-150 hover:bg-slate-700 duration-300 "
 											style="width: {$progress}rem"
 											type="text"
 											name="search"
@@ -91,7 +107,7 @@
 							{:else}
 								<button on:click={searchActived}>
 									<div>
-										<MagnifyingGlassSolid class="translate-y-0.5"/>
+										<MagnifyingGlassSolid class="translate-y-0.5" style="width: {$progress2}rem"/>
 									</div>
 								</button>
 							{/if}
@@ -104,7 +120,7 @@
 							</a>
 						{:else}
 							<a class="p-6" href="/login">
-								<CircleUserRegular class="py" />
+								<CircleUserRegular class="py"/>
 							</a>
 						{/if}
 					</profile>
