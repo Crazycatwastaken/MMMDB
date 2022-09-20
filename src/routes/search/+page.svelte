@@ -1,6 +1,7 @@
 <script>
 	import { fetchDatabase } from '../../stores/MoviesDB.js';
 	import { page } from '$app/stores';
+	import { dataset_dev } from 'svelte/internal';
 	const searchquery = $page.url.searchParams.get('search');
 	// @ts-ignore
 	async function getdata(query) {
