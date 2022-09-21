@@ -33,9 +33,6 @@
 	// @ts-ignore
 	function handleClickOutside(event) {
 		progress.set(0);
-		
-		console.log($progress);
-		console.log(searchActive);
 		setTimeout(() => {
 			searchActive = false;
 			progress2.set(2);

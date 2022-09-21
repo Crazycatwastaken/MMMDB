@@ -34,7 +34,7 @@
 	}
 
 	let promise = getdata();
-	let Poster = 'https://image.tmdb.org/t/p/original';
+	let Poster = 'https://image.tmdb.org/t/p/w500';
 </script>
 
 <main class="px-32">
