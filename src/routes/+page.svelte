@@ -31,7 +31,7 @@
 			left = right - 3;
 			Medium = true;
 			console.log('4');
-		} else if (innerWidth > 1024) {
+		} else if (innerWidth >= 1024) {
 			right = 6;
 			left = right - 5;
 			Large = true;
