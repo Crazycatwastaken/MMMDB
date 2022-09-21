@@ -1,7 +1,6 @@
-<script>
-	import { element } from 'svelte/internal';
+<script lang="js">
 	import { fetchDatabase } from '../stores/PopMoviesDB.js';
-
+	import { onMount } from 'svelte';
 	export let searchquery = '';
 
 	// @ts-ignore
@@ -10,8 +9,39 @@
 		return data.results;
 	}
 
-	let right = 5;
+	let promise = getdata();
+	let Poster = 'https://image.tmdb.org/t/p/w500';
+
+	$: innerWidth = 0;
+
+	let right = 0;
 	let left = 0;
+	let Small = false;
+	let Medium = false;
+	let Large = false;
+	onMount(async () => {
+		console.log('Called');
+		if (innerWidth < 768) {
+			right = 3;
+			left = right - 2;
+			Small = true;
+			console.log('3');
+		} else if (innerWidth > 769 && innerWidth < 1024) {
+			right = 4;
+			left = right - 3;
+			Medium = true;
+			console.log('4');
+		} else if (innerWidth > 1024) {
+			right = 6;
+			left = right - 5;
+			Large = true;
+			console.log('6');
+		}
+		console.log(Small);
+		console.log(Medium);
+		console.log(Large);
+	});
+
 	// @ts-ignore
 	function scrollright({ target }) {
 		const el = document.querySelector(target.getAttribute('href'));
@@ -20,7 +50,16 @@
 			behavior: 'smooth'
 		});
 		right++;
-		left = right - 5;
+		if ((Small === true)) {
+			left = right - 3;
+		} else if ((Medium === true)) {
+			left = right - 4;
+		} else if ((Large === true)) {
+			left = right - 6;
+		}
+		console.log(Small);
+		console.log(Medium);
+		console.log(Large);
 	}
 	// @ts-ignore
 	function scrolleft({ target }) {
@@ -30,14 +69,17 @@
 			behavior: 'smooth'
 		});
 		left--;
-		right = left + 5;
+		// @ts-ignore
+		right = right - 1;
 	}
-
-	let promise = getdata();
-	let Poster = 'https://image.tmdb.org/t/p/w500';
 </script>
 
-<main class="px-32">
+<svelte:window bind:innerWidth />
+
+<main class="p-5 md:p-10 g:p-20">
+	<p>
+		Inner Width: {innerWidth}
+	</p>
 	<h1>MMMDB</h1>
 
 	<div class="not-prose relative rounded-xl overflow-hidden bg-slate-800/25">
@@ -62,9 +104,12 @@
 		{#await promise}
 			<p>loading...</p>
 		{:then data}
-			<div class="overflow-x-auto flex" style="overflow-x: hidden;">
+			<div class="overflow-x-auto flex " style="overflow-x: hidden;">
 				{#each data as { poster_path, original_title }, i}
-					<div class="flex-none py-6 px-6 md:w-1/4 md:h-1/1" id="section-{i + 1}">
+					<div
+						class="flex-none h-full w-1/2 py-4 px-1 md:w-1/3 md:py-6 md:px-2 lg:w-1/5"
+						id="section-{i + 1}"
+					>
 						<img
 							class="md:object-cover rounded-xl"
 							src={Poster + poster_path}
