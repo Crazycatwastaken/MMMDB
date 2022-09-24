@@ -46,8 +46,8 @@
 </script>
 
 <nav>
-	<figure class="grid gird-cols-3 rounded-xl p-8">
-		<div class="flex justify-start items-center">
+	<figure class="grid grid:cols-2 md:gird-cols-3 rounded-xl p-8">
+		<div class="flex md:justify-start justify-center items-center ">
 			<img
 				class="w-16 h-16 md:w-16 md:h-16 rounded-lg mx-left"
 				src="../src/logos\MMMDB.png"
@@ -56,7 +56,7 @@
 			<div>
 				<p class="pl-3 text-3xl break-all text-center ">MMMDB</p>
 			</div>
-			<div class="pl-5 text-lg text-center hidden md:block">
+			<div class="pl-5 text-lg text-center ">
 				<b>
 					<a
 						class="pl-2"
@@ -79,7 +79,7 @@
 				</b>
 			</div>
 		</div>
-		<div class="col-start-3 flex justify-end items-center">
+		<div class="col-mid-2 md:col-start-3 flex justify-center md:justify-end items-center">
 			<div>
 				<div class="flex items-center border-l border-slate-200 ml-6 pl-6">
 					<div>

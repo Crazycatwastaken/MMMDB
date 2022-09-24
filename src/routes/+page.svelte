@@ -102,7 +102,7 @@
 
 	<div class="">
 		{#await promise}
-			<p>loading...</p>
+			<p>loading</p>
 		{:then data}
 			<div class="overflow-x-auto flex " style="overflow-x: hidden;">
 				{#each data as { poster_path, original_title }, i}
